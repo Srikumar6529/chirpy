@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	//"fmt"
 )
 
 func respondWithError(w http.ResponseWriter, code int, msg string, err error) {
@@ -23,7 +24,9 @@ func respondWithError(w http.ResponseWriter, code int, msg string, err error) {
 
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
+	//fmt.Println(payload)
 	dat, err := json.Marshal(payload)
+	//fmt.Println(string(dat))
 	if err != nil {
 		log.Printf("Error marshalling JSON: %s", err)
 		w.WriteHeader(500)
